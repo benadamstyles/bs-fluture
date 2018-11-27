@@ -1,0 +1,28 @@
+{
+  "name": "bs-fluture",
+  "version": "0.0.1",
+  "description": "Reason bindings for Fluture.js",
+  "main": "Fluture.re",
+  "scripts": {
+    "watch": "bsb -make-world -clean-world -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bucklescript",
+    "reason",
+    "bsb",
+    "fluture",
+    "promise",
+    "async"
+  ],
+  "author": "benadamstyles",
+  "license": "MIT",
+  "bugs": "",
+  "devDependencies": {
+    "bs-platform": "^4.0.7",
+    "release-it": "^8.1.0"
+  },
+  "peerDependencies": {
+    "fluture": "^10.2.0"
+  }
+}

@@ -17,7 +17,9 @@
   ],
   "author": "benadamstyles",
   "license": "MIT",
-  "bugs": "",
+  "homepage": "https://github.com/benadamstyles/bs-fluture",
+  "repository": "https://github.com/benadamstyles/bs-fluture",
+  "bugs": "https://github.com/benadamstyles/bs-fluture/issues",
   "devDependencies": {
     "bs-platform": "^4.0.7",
     "release-it": "^8.1.0"

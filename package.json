@@ -5,6 +5,7 @@
   "main": "Fluture.re",
   "scripts": {
     "watch": "bsb -make-world -clean-world -w",
+    "release": "release-it",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

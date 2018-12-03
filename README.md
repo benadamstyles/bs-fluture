@@ -21,12 +21,76 @@ Then add bs-fluture to bs-dependencies in your `bsconfig.json`:
 ## Usage
 
 ```reason
-let fetchData = () =>
-  BsFluture.encaseP(fetch, "https://example.com")
-  |> BsFluture.fork(
-       error => Js.Log(error),
-       response => Js.Log(response),
-     );
+let future =
+  BsFluture.make((reject, resolve) => {
+    let timeoutId =
+      Js.Global.setTimeout(
+        () =>
+          if (Random.bool()) {
+            resolve("success");
+          } else {
+            reject("error");
+          },
+        30,
+      );
 
-let cancelFetch = fetchData();
+    /* EITHER return a wrapped cancellation function ... */
+    BsFluture.Cancel(
+      (.) => Js.Global.clearTimeout(timeoutId) /* see below */,
+    );
+    /* ... OR return NoCancel */
+    BsFluture.NoCancel;
+  });
+
+let cancelFuture =
+  future
+  |> BsFluture.fork(error => Js.log(error), response => Js.log(response));
+
+/* Cancels a Future only if a cancellation function was provided */
+BsFluture.safeCancel(cancelFuture);
 ```
+
+### Cancellation
+
+**TL;DR:** Due to an incompatibility between how BuckleScript compiles functions and the runtime type-checking of Fluture, you currently need to explicitly uncurry your cancellation function.
+
+#### The explanation:
+
+Bucklescript compiles this:
+
+```reason
+() => true;
+```
+
+to something like this:
+
+```js
+function(param) {
+  return true;
+}
+```
+
+However, Fluture.js type checks your cancellation functions at runtime so if you returned the above function from your `BsFluture.make()` function, you'd get the following error:
+
+```
+TypeError: The computation was expected to return a nullary function or void
+  Actual: function (param) {
+      return true;
+    }
+```
+
+It is complaining because it wants a nullary function (a function that takes no arguments), but your compiled function takes a single argument, `param`, which it then ignores. If instead you uncurry your nullary function like this:
+
+```reason
+(.) => true;
+```
+
+then BuckleScript compiles it thus:
+
+```js
+function() {
+  return true;
+}
+```
+
+and all is well.

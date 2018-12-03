@@ -1,6 +1,17 @@
 type t('e, 'v);
 
-type cancel = unit => unit;
+type cancel =
+  | NoCancel
+  | Cancel((. unit) => unit);
+
+type computation('e, 'v) = ('e => unit, 'v => unit) => cancel;
+
+type cancelJs = option((. unit) => unit);
+
+let safeCancel: cancelJs => unit =
+  fun
+  | Some(c) => c(.)
+  | None => ();
 
 type nodeback('e, 'v) = ('e, 'v) => unit;
 
@@ -8,7 +19,17 @@ type nodeback('e, 'v) = ('e, 'v) => unit;
  * Creating
  */
 [@bs.module "fluture"]
-external make: (('e => unit, 'v => unit) => cancel) => t('e, 'v) = "default";
+external make_: (('e => unit, 'v => unit) => cancelJs) => t('e, 'v) =
+  "default";
+
+let wrapComputation = (compute: computation('e, 'v), rej, res): cancelJs =>
+  switch (compute(rej, res)) {
+  | Cancel(c) => Some(c)
+  | NoCancel => None
+  };
+
+let make = (compute: computation('e, 'v)) =>
+  make_(wrapComputation(compute));
 
 [@bs.module "fluture"] external resolve: 'v => t(unit, 'v) = "of";
 
@@ -87,18 +108,18 @@ external fold: ('e => 'a, 'v => 'a, t('e, 'v)) => t(unit, 'a) = "";
  * Consuming
  */
 [@bs.module "fluture"]
-external fork: ('e => unit, 'v => unit, t('e, 'v)) => cancel = "";
+external fork: ('e => unit, 'v => unit, t('e, 'v)) => cancelJs = "";
 
 [@bs.module "fluture"]
 external forkCatch:
-  (Js.Exn.t => unit, 'e => unit, 'v => unit, t('e, 'v)) => cancel =
+  (Js.Exn.t => unit, 'e => unit, 'v => unit, t('e, 'v)) => cancelJs =
   "";
 
 [@bs.module "fluture"]
-external value: ('v => unit, t(unit, 'v)) => cancel = "";
+external value: ('v => unit, t(unit, 'v)) => cancelJs = "";
 
 [@bs.module "fluture"]
-external done_: (nodeback('e, 'v), t('e, 'v)) => cancel = "done";
+external done_: (nodeback('e, 'v), t('e, 'v)) => cancelJs = "done";
 
 [@bs.module "fluture"] external promise: t('e, 'v) => Js.Promise.t('v) = "";
 

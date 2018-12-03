@@ -1,5 +1,6 @@
 {
   "name": "bs-fluture",
-  "sources": ["src"],
+  "sources": ["src", {"dir": "__tests__", "type": "dev"}],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
   "refmt": 3
 }

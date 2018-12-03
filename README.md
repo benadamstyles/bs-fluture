@@ -17,3 +17,16 @@ Then add bs-fluture to bs-dependencies in your `bsconfig.json`:
   "bs-dependencies": ["bs-fluture"]
 }
 ```
+
+## Usage
+
+```reason
+let fetchData = () =>
+  BsFluture.encaseP(fetch, "https://example.com")
+  |> BsFluture.fork(
+       error => Js.Log(error),
+       response => Js.Log(response),
+     );
+
+let cancelFetch = fetchData();
+```

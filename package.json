@@ -1,6 +1,6 @@
 {
   "name": "bs-fluture",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reason bindings for Fluture.js",
   "main": "Fluture.re",
   "scripts": {

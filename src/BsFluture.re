@@ -2,7 +2,7 @@ type t('e, 'v);
 
 type cancel =
   | NoCancel
-  | Cancel((. unit) => unit);
+  | Cancel(unit => unit);
 
 type computation('e, 'v) = ('e => unit, 'v => unit) => cancel;
 
@@ -24,7 +24,7 @@ external make_: (('e => unit, 'v => unit) => cancelJs) => t('e, 'v) =
 
 let wrapComputation = (compute: computation('e, 'v), rej, res): cancelJs =>
   switch (compute(rej, res)) {
-  | Cancel(c) => Some(c)
+  | Cancel(c) => Some(((.) => c()))
   | NoCancel => None
   };
 

@@ -2,7 +2,7 @@ type t('e, 'v);
 
 type cancel =
   | NoCancel
-  | Cancel((. unit) => unit);
+  | Cancel(unit => unit);
 
 type cancelJs;
 

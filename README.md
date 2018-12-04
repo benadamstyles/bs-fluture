@@ -4,6 +4,14 @@
 
 This library of bindings is currently a work in progress. Please file an issue if one of the bindings is wrong or it isn't working for you in general.
 
+## Justification
+
+Futures, as provided by Fluture, give the following benefits over Promises:
+
+- Futures are lazy, rather than eager. Creating a future doesn't actually perform the async task – that only happens when you consume the future with e.g. `fork()`. Promises, on the other hand, perform their async task as soon as they are created. If you want a Promise that you can pass around without actually running it, you have to wrap it in a function, introducing more boilerplate.
+- Cancellation is a built-in feature of futures.
+- Unlike Promises (even in Reason!), Futures explicitly type their error states.
+
 ## Installation
 
 ```sh
@@ -35,9 +43,7 @@ let future =
       );
 
     /* EITHER return a wrapped cancellation function ... */
-    BsFluture.Cancel(
-      (.) => Js.Global.clearTimeout(timeoutId) /* see below */,
-    );
+    BsFluture.Cancel(() => Js.Global.clearTimeout(timeoutId));
     /* ... OR return NoCancel */
     BsFluture.NoCancel;
   });
@@ -49,48 +55,3 @@ let cancelFuture =
 /* Cancels a Future only if a cancellation function was provided */
 BsFluture.safeCancel(cancelFuture);
 ```
-
-### Cancellation
-
-**TL;DR:** Due to an incompatibility between how BuckleScript compiles functions and the runtime type-checking of Fluture, you currently need to explicitly uncurry your cancellation function.
-
-#### The explanation:
-
-Bucklescript compiles this:
-
-```reason
-() => true;
-```
-
-to something like this:
-
-```js
-function(param) {
-  return true;
-}
-```
-
-However, Fluture.js type checks your cancellation functions at runtime so if you returned the above function from your `BsFluture.make()` function, you'd get the following error:
-
-```
-TypeError: The computation was expected to return a nullary function or void
-  Actual: function (param) {
-      return true;
-    }
-```
-
-It is complaining because it wants a nullary function (a function that takes no arguments), but your compiled function takes a single argument, `param`, which it then ignores. If instead you uncurry your nullary function like this:
-
-```reason
-(.) => true;
-```
-
-then BuckleScript compiles it thus:
-
-```js
-function() {
-  return true;
-}
-```
-
-and all is well.

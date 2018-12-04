@@ -6,8 +6,7 @@ describe("BsFluture", () => {
   let future =
     make((_rej, res) => {
       let tid = Js.Global.setTimeout(() => res(true), 30);
-      /* NoCancel; */
-      Cancel((.) => Js.Global.clearTimeout(tid));
+      Cancel(() => Js.Global.clearTimeout(tid));
     });
 
   testAsync("fork success", test =>

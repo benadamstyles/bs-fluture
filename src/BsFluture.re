@@ -43,7 +43,7 @@ let make = (compute: computation('e, 'v)) =>
 external attempt: (unit => 'v) => t(Js.Exn.t, 'v) = "try";
 
 [@bs.module "fluture"]
-external tryP: (unit => Js.Promise.t('v)) => t(Js.Exn.t, 'v) = "";
+external tryP: (unit => Js.Promise.t('v)) => t('e, 'v) = "";
 
 [@bs.module "fluture"]
 external node: (nodeback('e, 'v) => unit) => t('e, 'v) = "";

@@ -18,7 +18,7 @@ let reject: 'e => t('e, unit);
 let after: (int, 'v) => t(unit, 'v);
 let rejectAfter: (int, 'e) => t('e, unit);
 let attempt: (unit => 'v) => t(Js.Exn.t, 'v);
-let tryP: (unit => Js.Promise.t('v)) => t(Js.Exn.t, 'v);
+let tryP: (unit => Js.Promise.t('v)) => t('e, 'v);
 let node: (nodeback('e, 'v) => unit) => t('e, 'v);
 let encase: ('a => 'v, 'a) => t(Js.Exn.t, 'v);
 let encase2: (('a, 'b) => 'v, 'a, 'b) => t(Js.Exn.t, 'v);

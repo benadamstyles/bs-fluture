@@ -1,0 +1,10 @@
+{
+  "src": {
+    "commitMessage": "Release v%s",
+    "tagAnnotation": "Release v%s"
+  },
+  "github": {
+    "release": true,
+    "draft": true
+  }
+}

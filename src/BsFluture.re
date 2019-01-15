@@ -31,13 +31,13 @@ let wrapComputation = (compute: computation('e, 'v), rej, res): cancelJs =>
 let make = (compute: computation('e, 'v)) =>
   make_(wrapComputation(compute));
 
-[@bs.module "fluture"] external resolve: 'v => t(unit, 'v) = "of";
+[@bs.module "fluture"] external resolve: 'v => t('e, 'v) = "of";
 
-[@bs.module "fluture"] external reject: 'e => t('e, unit) = "";
+[@bs.module "fluture"] external reject: 'e => t('e, 'v) = "";
 
-[@bs.module "fluture"] external after: (int, 'v) => t(unit, 'v) = "";
+[@bs.module "fluture"] external after: (int, 'v) => t('e, 'v) = "";
 
-[@bs.module "fluture"] external rejectAfter: (int, 'e) => t('e, unit) = "";
+[@bs.module "fluture"] external rejectAfter: (int, 'e) => t('e, 'v) = "";
 
 [@bs.module "fluture"]
 external attempt: (unit => 'v) => t(Js.Exn.t, 'v) = "try";
@@ -102,7 +102,7 @@ external chainRej: ('e => t('f, 'v), t('e, 'v)) => t('f, 'v) = "";
 [@bs.module "fluture"] external swap: t('e, 'v) => t('v, 'e) = "";
 
 [@bs.module "fluture"]
-external fold: ('e => 'a, 'v => 'a, t('e, 'v)) => t(unit, 'a) = "";
+external fold: ('e => 'a, 'v => 'a, t('e, 'v)) => t('f, 'a) = "";
 
 /**
  * Consuming
@@ -116,7 +116,7 @@ external forkCatch:
   "";
 
 [@bs.module "fluture"]
-external value: ('v => unit, t(unit, 'v)) => cancelJs = "";
+external value: ('v => unit, t('e, 'v)) => cancelJs = "";
 
 [@bs.module "fluture"]
 external done_: (nodeback('e, 'v), t('e, 'v)) => cancelJs = "done";
@@ -139,6 +139,6 @@ external parallel: (int, array(t('e, 'v))) => t('e, array('v)) = "";
  * Utility
  */ [@bs.module "fluture"] external isFuture: 'a => bool = "";
 
-[@bs.module "fluture"] external never: unit => t(unit, unit) = "";
+[@bs.module "fluture"] external never: unit => t('e, 'v) = "";
 
 [@bs.module "fluture"] external isNever: 'a => bool = "";

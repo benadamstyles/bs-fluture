@@ -50,3 +50,7 @@ let parallel: (int, array(t('e, 'v))) => t('e, array('v));
 let isFuture: 'a => bool;
 let never: unit => t('e, 'v);
 let isNever: 'a => bool;
+
+let let_: (t('e, 'a), 'a => t('e, 'b)) => t('e, 'b);
+let and_: (t('e, 'a), t('e, 'b)) => t('e, ('a, 'b));
+let try_: (t('e, 'v), 'e => t('f, 'v)) => t('f, 'v);

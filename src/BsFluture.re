@@ -142,3 +142,7 @@ external parallel: (int, array(t('e, 'v))) => t('e, array('v)) = "";
 [@bs.module "fluture"] external never: unit => t('e, 'v) = "";
 
 [@bs.module "fluture"] external isNever: 'a => bool = "";
+
+let let_ = (future, continuation) => future |> chain(continuation);
+let and_ = both;
+let try_ = (future, handler) => future |> chainRej(handler);

@@ -9,6 +9,7 @@
     "README.md"
   ],
   "scripts": {
+    "build": "bsb -make-world -clean-world",
     "watch": "bsb -make-world -clean-world -w",
     "release": "release-it",
     "test": "jest"

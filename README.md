@@ -55,3 +55,15 @@ let cancelFuture =
 /* Cancels a Future only if a cancellation function was provided */
 BsFluture.safeCancel(cancelFuture);
 ```
+
+## let-anything
+
+This package is compatible with [let-anything](https://github.com/jaredly/let-anything) – use it like this:
+
+```reason
+let getDefaultUsername = (futureEmail: BsFluture.t(Js.Exn.t, string)) => {
+  let%BsFluture email = futureEmail;
+  let name = Js.String.split(email, "@")[0];
+  BsFluture.resolve(name);
+};
+```

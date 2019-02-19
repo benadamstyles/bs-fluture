@@ -13,7 +13,7 @@ let safeCancel: cancelJs => unit =
   | Some(c) => c(.)
   | None => ();
 
-type nodeback('e, 'v) = ('e, 'v) => unit;
+type nodeback('e, 'v) = (Js.nullable('e), 'v) => unit;
 
 /**
  * Creating

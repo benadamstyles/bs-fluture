@@ -8,7 +8,7 @@ type cancelJs;
 
 type computation('e, 'v) = ('e => unit, 'v => unit) => cancel;
 
-type nodeback('e, 'v) = ('e, 'v) => unit;
+type nodeback('e, 'v) = (Js.nullable('e), 'v) => unit;
 
 let safeCancel: cancelJs => unit;
 

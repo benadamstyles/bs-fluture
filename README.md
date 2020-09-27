@@ -2,7 +2,10 @@
 
 [ReasonML](https://reasonml.github.io/) bindings for [Fluture](https://github.com/fluture-js/Fluture).
 
-This library of bindings is currently a work in progress. Please file an issue if one of the bindings is wrong or it isn't working for you in general.
+> **NOTE:** v1+ of `bs-fluture` is only compatible with v12+ of Fluture (see v12's [Breaking Changes document](https://gist.github.com/Avaq/ee2c6c819db4c37258e9a226e6380a38#functions-use-simple-currying) for more details).
+> If you are using v11 of Fluture or lower, you must use v0.x of `bs-fluture`.
+
+This library of bindings does not currently cover 100% of the Fluture API, although it does cover the vast majority of the commonly-used API, especially for the ReScript/ReasonML context. Please file an issue if one of the bindings is missing, wrong or it isn't working for you in general.
 
 ## Justification
 
@@ -42,18 +45,21 @@ let future =
         30,
       );
 
-    /* EITHER return a wrapped cancellation function ... */
+    /** EITHER return a wrapped cancellation function ... */
     BsFluture.Cancel(() => Js.Global.clearTimeout(timeoutId));
-    /* ... OR return NoCancel */
+    /** ... OR return NoCancel if there is no way to clean up. */
     BsFluture.NoCancel;
   });
 
 let cancelFuture =
   future
-  |> BsFluture.fork(error => Js.log(error), response => Js.log(response));
+  |> BsFluture.fork(error => Js.Console.error(error), response => Js.log(response));
 
-/* Cancels a Future only if a cancellation function was provided */
-BsFluture.safeCancel(cancelFuture);
+/**
+ * Due to runtime type-checking in Fluture,
+ * the cancellation function must be explicitly uncurried.
+ */
+cancelFuture(.);
 ```
 
 ## let-anything

@@ -39,6 +39,6 @@
     "semantic-release": "^17.0.7"
   },
   "peerDependencies": {
-    "fluture": "^10.2.0"
+    "fluture": "^12"
   }
 }

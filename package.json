@@ -2,7 +2,7 @@
   "name": "bs-fluture",
   "version": "1.0.0",
   "description": "Reason bindings for Fluture.js",
-  "main": "Fluture.re",
+  "main": "src/Fluture.re",
   "files": [
     "src/",
     "bsconfig.json",

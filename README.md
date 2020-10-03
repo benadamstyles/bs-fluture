@@ -1,4 +1,4 @@
-# bs-fluture
+# Fluture for ReScript / ReasonML / BuckleScript
 
 [ReasonML](https://reasonml.github.io/) bindings for [Fluture](https://github.com/fluture-js/Fluture).
 
@@ -9,7 +9,7 @@ This library of bindings does not currently cover 100% of the Fluture API, altho
 
 ## Justification
 
-Futures, as provided by Fluture, give the following benefits over Promises:
+Futures give the following benefits over Promises:
 
 - Futures are lazy, rather than eager. Creating a future doesn't actually perform the async task – that only happens when you consume the future with e.g. `fork()`. Promises, on the other hand, perform their async task as soon as they are created. If you want a Promise that you can pass around without actually running it, you have to wrap it in a function, introducing more boilerplate.
 - Cancellation is a built-in feature of futures.
@@ -33,7 +33,7 @@ Then add bs-fluture to bs-dependencies in your `bsconfig.json`:
 
 ```reason
 let future =
-  BsFluture.make((reject, resolve) => {
+  Fluture.make((reject, resolve) => {
     let timeoutId =
       Js.Global.setTimeout(
         () =>
@@ -46,14 +46,14 @@ let future =
       );
 
     /** EITHER return a wrapped cancellation function ... */
-    BsFluture.Cancel(() => Js.Global.clearTimeout(timeoutId));
+    Fluture.Cancel(() => Js.Global.clearTimeout(timeoutId));
     /** ... OR return NoCancel if there is no way to clean up. */
-    BsFluture.NoCancel;
+    Fluture.NoCancel;
   });
 
 let cancelFuture =
   future
-  |> BsFluture.fork(error => Js.Console.error(error), response => Js.log(response));
+  |> Fluture.fork(error => Js.Console.error(error), response => Js.log(response));
 
 /**
  * Due to runtime type-checking in Fluture,
@@ -67,9 +67,9 @@ cancelFuture(.);
 This package is compatible with [let-anything](https://github.com/jaredly/let-anything) – use it like this:
 
 ```reason
-let getDefaultUsername = (futureEmail: BsFluture.t(Js.Exn.t, string)) => {
-  let%BsFluture email = futureEmail;
+let getDefaultUsername = (futureEmail: Fluture.t(Js.Exn.t, string)) => {
+  let%Fluture email = futureEmail;
   let name = Js.String.split(email, "@")[0];
-  BsFluture.resolve(name);
+  Fluture.resolve(name);
 };
 ```

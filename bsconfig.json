@@ -1,7 +1,7 @@
 {
   "name": "bs-fluture",
 
-  "namespace": "fluture",
+  "namespace": false,
 
   "sources": ["src", { "dir": "__tests__", "type": "dev" }],
 

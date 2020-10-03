@@ -1,5 +1,5 @@
 open Jest;
-open BsFluture;
+open Fluture;
 open Expect;
 open! Operators;
 open Belt;
@@ -45,7 +45,7 @@ let throwOnCallError = (_error: Js.Exn.t) => throwOnCall();
 let throwOnCallString = (_error: string) => throwOnCall();
 let throwOnCallBool = (_error: bool) => throwOnCall();
 
-describe("BsFluture", () => {
+describe("Fluture", () => {
   describe("cancellation", () => {
     testAsync("not cancelling works as expected", test => {
       let succeeded = ref(false);

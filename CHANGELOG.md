@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/benadamstyles/bs-fluture/compare/v2.0.0...v2.0.1) (2020-12-29)
+
+
+### Bug Fixes
+
+* **deps:** bump node-notifier from 8.0.0 to 8.0.1 ([96ae887](https://github.com/benadamstyles/bs-fluture/commit/96ae8877bccb65d1d68bc8f4fea9050b6e0f9ad8))
+
 # [2.0.0](https://github.com/benadamstyles/bs-fluture/compare/v1.0.0...v2.0.0) (2020-10-03)
 
 

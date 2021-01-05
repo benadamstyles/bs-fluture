@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/benadamstyles/bs-fluture/compare/v2.0.1...v2.0.2) (2021-01-05)
+
+
+### Bug Fixes
+
+* **deps:** bump ini from 1.3.5 to 1.3.8 ([d4c358f](https://github.com/benadamstyles/bs-fluture/commit/d4c358f0a874bd886c6458a6ac83d3277ecbd14e))
+
 ## [2.0.1](https://github.com/benadamstyles/bs-fluture/compare/v2.0.0...v2.0.1) (2020-12-29)
 
 

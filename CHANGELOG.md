@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/benadamstyles/bs-fluture/compare/v2.0.2...v2.0.3) (2021-05-24)
+
+
+### Bug Fixes
+
+* **deps:** bump y18n from 4.0.0 to 4.0.3 ([9d80906](https://github.com/benadamstyles/bs-fluture/commit/9d80906a02e56adafcbf2fb8e49db20d6eb84b21))
+
 ## [2.0.2](https://github.com/benadamstyles/bs-fluture/compare/v2.0.1...v2.0.2) (2021-01-05)
 
 

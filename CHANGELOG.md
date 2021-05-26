@@ -1,3 +1,11 @@
+## [2.0.4](https://github.com/benadamstyles/bs-fluture/compare/v2.0.3...v2.0.4) (2021-05-26)
+
+
+### Bug Fixes
+
+* **deps:** bump hosted-git-info from 2.7.1 to 2.8.9 ([5ba534d](https://github.com/benadamstyles/bs-fluture/commit/5ba534d712d32e975bffb19e7bb53302367a237a))
+* **deps:** bump lodash from 4.17.20 to 4.17.21 ([3e417ed](https://github.com/benadamstyles/bs-fluture/commit/3e417edd39fe9436bcc0ddc82227e460735e7027))
+
 ## [2.0.3](https://github.com/benadamstyles/bs-fluture/compare/v2.0.2...v2.0.3) (2021-05-24)
 
 

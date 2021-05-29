@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/benadamstyles/bs-fluture/compare/v2.0.4...v2.0.5) (2021-05-29)
+
+
+### Bug Fixes
+
+* **deps:** bump ws from 7.3.1 to 7.4.6 ([f10aa10](https://github.com/benadamstyles/bs-fluture/commit/f10aa107de2117f06c096180a71c5e9e067de033))
+
 ## [2.0.4](https://github.com/benadamstyles/bs-fluture/compare/v2.0.3...v2.0.4) (2021-05-26)
 
 

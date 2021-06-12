@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/benadamstyles/bs-fluture/compare/v2.0.5...v2.0.6) (2021-06-12)
+
+
+### Bug Fixes
+
+* **deps:** bump normalize-url from 6.0.0 to 6.0.1 ([f0e3c47](https://github.com/benadamstyles/bs-fluture/commit/f0e3c475ab080de8b6c9275badcd4434b95e13c6))
+
 ## [2.0.5](https://github.com/benadamstyles/bs-fluture/compare/v2.0.4...v2.0.5) (2021-05-29)
 
 

@@ -1,3 +1,12 @@
+## [2.0.7](https://github.com/benadamstyles/bs-fluture/compare/v2.0.6...v2.0.7) (2021-11-30)
+
+
+### Bug Fixes
+
+* **deps:** bump path-parse from 1.0.6 to 1.0.7 ([0a81f52](https://github.com/benadamstyles/bs-fluture/commit/0a81f52f59e406b063286f8f3d3232ad032acdaf))
+* **deps:** bump semver-regex from 3.1.2 to 3.1.3 ([74698ce](https://github.com/benadamstyles/bs-fluture/commit/74698ce71134cf31667b50fb198c5c5563a8594a))
+* **deps:** bump tmpl from 1.0.4 to 1.0.5 ([309643d](https://github.com/benadamstyles/bs-fluture/commit/309643daa6e6898815705f0cc9cb072c3d1f9c62))
+
 ## [2.0.6](https://github.com/benadamstyles/bs-fluture/compare/v2.0.5...v2.0.6) (2021-06-12)
 
 

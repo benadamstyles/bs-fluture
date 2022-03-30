@@ -1,3 +1,10 @@
+## [2.0.8](https://github.com/benadamstyles/bs-fluture/compare/v2.0.7...v2.0.8) (2022-03-30)
+
+
+### Bug Fixes
+
+* **deps:** bump minimist from 1.2.5 to 1.2.6 ([bc12627](https://github.com/benadamstyles/bs-fluture/commit/bc12627cb783f0c39fffec8e6c961a0b014eff78))
+
 ## [2.0.7](https://github.com/benadamstyles/bs-fluture/compare/v2.0.6...v2.0.7) (2021-11-30)
 
 

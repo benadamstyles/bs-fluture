@@ -1,3 +1,11 @@
+## [2.0.10](https://github.com/benadamstyles/bs-fluture/compare/v2.0.9...v2.0.10) (2022-07-17)
+
+
+### Bug Fixes
+
+* **deps:** bump npm from 8.5.5 to 8.11.0 ([1cb06cf](https://github.com/benadamstyles/bs-fluture/commit/1cb06cf2914ad1df60a96beeae7ab54ab1ab066d))
+* **deps:** bump semver-regex from 3.1.3 to 3.1.4 ([f14a24e](https://github.com/benadamstyles/bs-fluture/commit/f14a24e2dc99762581498eb9a94ca1c5a6e8068a))
+
 ## [2.0.9](https://github.com/benadamstyles/bs-fluture/compare/v2.0.8...v2.0.9) (2022-03-30)
 
 
